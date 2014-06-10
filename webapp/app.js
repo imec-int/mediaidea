@@ -26,16 +26,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res){
 
-	var phrase = createRandomPhrase();
+	var phraseObj = createRandomPhrase();
 
-	console.log(phrase);
-	res.send(phrase);
+	console.log(phraseObj);
+	//res.send(phrase);
 
-	// res.render('index', { title: 'Hello World' });
+	res.render('index', { phrase: phraseObj });
 });
 
 
 function createRandomPhrase (){
+    var phraseObj = {};
 	var subject = phrases.subjects[Math.floor(Math.random()*phrases.subjects.length)];
 	var verb    = phrases.verb[Math.floor(Math.random()*phrases.verb.length)];
 	var object  = phrases.objects[Math.floor(Math.random()*phrases.objects.length)];
@@ -48,7 +49,13 @@ function createRandomPhrase (){
 		phrase += ' ' + extra;
 	}
 
-	return phrase;
+    phraseObj.subject = subject;
+    phraseObj.verb = verb;
+    phraseObj.object = object;
+    phraseObj.extra = extra;
+    phraseObj.phrase = phrase;
+
+	return phraseObj;
 }
 
 
