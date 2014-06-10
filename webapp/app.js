@@ -5,6 +5,8 @@ var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
+var phrases = require('./data/phrases');
+
 // EXPRESS: BASE SETUP
 // ==============================================
 var app     = express();
@@ -23,8 +25,31 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ==============================================
 
 app.get('/', function (req, res){
-	res.render('index', { title: 'Hello World' });
+
+	var phrase = createRandomPhrase();
+
+	console.log(phrase);
+	res.send(phrase);
+
+	// res.render('index', { title: 'Hello World' });
 });
+
+
+function createRandomPhrase (){
+	var subject = phrases.subjects[Math.floor(Math.random()*phrases.subjects.length)];
+	var verb    = phrases.verb[Math.floor(Math.random()*phrases.verb.length)];
+	var object  = phrases.objects[Math.floor(Math.random()*phrases.objects.length)];
+	var extra   = phrases.extra[Math.floor(Math.random()*phrases.extra.length)];
+
+	var doExtra = Math.random() < 0.5;
+
+	var phrase = subject.value + ' ' + subject.preposition + ' ' + verb + ' '  + object;
+	if(doExtra){
+		phrase += ' ' + extra;
+	}
+
+	return phrase;
+}
 
 
 // EXPRESS: ERROR HANDLING
