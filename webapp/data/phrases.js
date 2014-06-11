@@ -29,9 +29,11 @@ exports.objects = [
 	'a journalist',
 	'an editor',
 	'a consumer',
-	'a data scientist'
+	'a data scientist',
+	'loyal tv watchers'
 ];
 
 exports.extra = [
-	'with a fear for rain'
+	'with a fear for rain',
+	'to earn money by sharing comments'
 ];
