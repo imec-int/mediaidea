@@ -5,6 +5,8 @@ var App = function (options){
 	*/
 
 	var init = function (){
+		FastClick.attach(document.body);
+		document.location.hash = "generator"
 		handlers();
 	};
 
@@ -16,8 +18,18 @@ var App = function (options){
 			animateToThisPhrase(generateRandomPhrase());
 		});
 		$("#btn_better").click(function(){
-			TweenLite.to(window, 0.8, {scrollTo:{y:"max"}, ease:Power2.easeOut});
+			TweenLite.to(window, 0.8,
+				{scrollTo:{y:$("#contact").offset().top},
+				ease:Power2.easeOut,
+				onComplete:function(){document.location.hash = "contact"}});
 		})
+		window.onhashchange = function(){
+			console.log("onhashchange() "+document.location.hash);
+			var hash = ""+document.location.hash;
+			TweenLite.to(window, 0.8,
+				{scrollTo:{y:$(hash).offset().top},
+				ease:Power2.easeOut});
+		};
 	};
 
 	/** Returns a random Phrase object **/
