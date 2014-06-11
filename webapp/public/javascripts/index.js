@@ -5,7 +5,6 @@ var App = function (options){
 	*/
 
 	var init = function (){
-		console.log("init");
 		handlers();
 	};
 
