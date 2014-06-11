@@ -63,21 +63,69 @@ var App = function (options){
 		// $("#action").html(phraseObj.verb+" "+phraseObj.object);
 		// $("#goal").html(phraseObj.extra);
 
-		animateLineByIdAndText("#subject",phraseObj.subject.value,Math.random()*0.35+0.075);
-		animateLineByIdAndText("#preposition",phraseObj.subject.preposition,Math.random()*0.35+0.075);
-		animateLineByIdAndText("#action",phraseObj.verb+" "+phraseObj.object,Math.random()*0.35+0.075);
-		animateLineByIdAndText("#goal",phraseObj.extra,Math.random()*0.35+0.075);
+		// animateLineByIdAndText("#subject",phraseObj.subject.value,Math.random()*0.35+0.075,"turn");
+		// animateLineByIdAndText("#preposition",phraseObj.subject.preposition,Math.random()*0.35+0.075,"turn");
+		// animateLineByIdAndText("#action",phraseObj.verb+" "+phraseObj.object,Math.random()*0.35+0.075,"turn");
+		// animateLineByIdAndText("#goal",phraseObj.extra,Math.random()*0.35+0.075,"turn");
+
+		simulateTurning("#subject",Math.random()*0.02+0.08);
+		simulateTurning("#preposition",Math.random()*0.02+0.08);
+		simulateTurning("#action",Math.random()*0.02+0.08);
+		simulateTurning("#goal",Math.random()*0.02+0.08);
+	};
+
+	var animateLineByIdAndText = function (lineId,newText,speed,animType){
+		if(animType == "swoosh"){
+			var scrnWidth = $(window).width()+100;
+			TweenLite.to($(lineId),speed,{css:{x:-scrnWidth}, ease:Power2.easeOut,
+				onComplete:function(){
+					TweenLite.to($(lineId),0,{css:{x:scrnWidth}});
+					$(lineId).html(newText);
+					TweenLite.to($(lineId),speed,{css:{x:0}, ease:Power2.easeOut});
+				}});
+		}else if(animType == "turn"){
+			TweenLite.to($(lineId),speed,{css:{rotationX:-90}, ease:Power2.easeOut,
+			onComplete:function(){
+				TweenLite.to($(lineId),0,{css:{rotationX:90}, ease:Power2.easeOut});
+				$(lineId).html(newText);
+				TweenLite.to($(lineId),speed,{css:{rotationX:0}, ease:Power2.easeOut});
+			}});
+		}
+	};
+	var maxTurns = {};
+
+	var simulateTurning = function (lineId,speed){
+		maxTurns[lineId] = Math.floor(Math.random()*6)+2;
+		simulateATurn(lineId,speed);
 
 	};
 
-	var animateLineByIdAndText = function (lineId,newText,speed){
-		var scrnWidth = $(window).width()+100;
-		TweenLite.to($(lineId),speed,{css:{x:-scrnWidth}, ease:Power2.easeOut,
+	var simulateATurn = function (lineId,speed){
+		TweenLite.to($(lineId),speed,{css:{rotationX:-90}, ease:Power2.easeOut,
+		onComplete:function(){
+			TweenLite.to($(lineId),0,{css:{rotationX:90}, ease:Power2.easeOut});
+			$(lineId).html(randomPhraseByLineId(lineId));
+			TweenLite.to($(lineId),speed,{css:{rotationX:0}, ease:Power2.easeOut,
 			onComplete:function(){
-				TweenLite.to($(lineId),0,{css:{x:scrnWidth}});
-				$(lineId).html(newText);
-				TweenLite.to($(lineId),speed,{css:{x:0}, ease:Power2.easeOut});
+				maxTurns[lineId]--;
+				if(maxTurns[lineId]>0)
+					simulateATurn(lineId,speed);
 			}});
+		}});
+	};
+
+	var randomPhraseByLineId = function(lineId){
+		switch(lineId){
+			case "#subject":
+				return Data.phrases.subjects[Math.floor(Math.random()*Data.phrases.subjects.length)].value
+			case "#preposition":
+				return Data.phrases.subjects[Math.floor(Math.random()*Data.phrases.subjects.length)].preposition
+			case "#action":
+				return Data.phrases.verb[Math.floor(Math.random()*Data.phrases.verb.length)] + " " + Data.phrases.objects[Math.floor(Math.random()*Data.phrases.objects.length)];
+			case "#goal":
+				return Data.phrases.extra[Math.floor(Math.random()*Data.phrases.extra.length)]
+
+		}
 	};
 
 	return {
