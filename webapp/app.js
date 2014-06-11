@@ -31,7 +31,7 @@ app.get('/', function (req, res){
 	console.log(phraseObj);
 	//res.send(phrase);
 
-	res.render('index', { phrase: phraseObj });
+	res.render('index', { phrase: phraseObj, phrases: phrases });
 });
 
 
