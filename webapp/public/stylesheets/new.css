@@ -274,21 +274,6 @@ h1{
 /*.invisible { visibility: hidden; }*/
 
 
-/*
- * Emigre web font kit 4f83557ff368e
- *
- * These fonts are not shareware.
- * Use of these fonts requires the purchase
- * of a license from Emigre, www.emigre.com
- * Please contact sales@emigre.com
- *
- * To purchase a license to use this font go to:
- * http://www.emigre.com/fontpage.php?PBroR.html
- *
- * © 2011 Emigre, Inc
- */
-
-
 @media screen and (max-width: 480px), (max-device-width: 480px) {
 	p { font-size: .875em; }
 	.three, .four, .six, .eight, .nine { display: block; float: none; width: 90%; padding: 0 5% }
