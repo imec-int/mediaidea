@@ -82,6 +82,12 @@ body{
 	/*.section{height: auto;height: auto !important; min-height: 66%;}*/
 }
 
+.h1Container{
+	background-image: url('../img/logo_big_w.png');
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: contain;
+}
 
 h1{
 	color: #ed308f;
@@ -90,6 +96,7 @@ h1{
 	background-color: #5e5d5d;
 	display: inline;
 	padding: 20px;
+	opacity: 0;
 }
 
 .subHeader{
@@ -97,6 +104,7 @@ h1{
 	font-size: 14px;
 	font-weight: bold;
 	margin-left: 20px;
+	opacity: 0;
 }
 
 @media screen and (max-device-width: 540px), (max-width: 540px)  {
@@ -128,6 +136,7 @@ h1{
 	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
+	cursor: pointer;
 }
 
 #mediaIdea p{
