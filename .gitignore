@@ -1,6 +1,5 @@
 node_modules
 
-*.css
 *.orig
 *.log
 
