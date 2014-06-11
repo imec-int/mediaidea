@@ -107,23 +107,30 @@ h1{
 	opacity: 0;
 }
 
-@media screen and (max-device-width: 540px), (max-width: 540px)  {
-	h1{font-size: 36px;}
-	.subHeader{font-size: 11px;}
-}
-
-
 #generator{
 	position: relative;
 	background-color: rgba(55,53,53,1);
 	background-image: url('../img/banner.png');
 	background-repeat: no-repeat;
 	background-position: top right;
-	background-size: 30%;
+	background-size: 240px;
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
 }
+
+@media screen and (max-device-width: 540px), (max-width: 540px)  {
+	h1{font-size: 36px;}
+	.subHeader{font-size: 11px;}
+	#generator{background-size: 160px;}
+}
+
+@media screen and (max-device-width: 480px), (max-width: 480px)  {
+	h1{font-size: 28px;}
+	.subHeader{font-size: 9px;}
+	#generator{background-size: 120px;}
+}
+
 
 /** generated mediaIdea stuff **/
 
@@ -170,6 +177,9 @@ h1{
 	cursor: pointer;
 	-webkit-tap-highlight-color: #716f6f;
 	tap-highlight-color: #716f6f;
+	-moz-box-shadow: 0 0 5px 5px #333;
+	-webkit-box-shadow: 0 0 5px 5px#333;
+	box-shadow: 0 0 5px 5px #2A2A2A;
 }
 
 .tapButton:hover{
