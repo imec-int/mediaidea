@@ -12,6 +12,9 @@ var App = function (options){
 		$("#btn_generate").click(function(){
 			animateToThisPhrase(generateRandomPhrase());
 		});
+		$("#mediaIdea").click(function(){
+			animateToThisPhrase(generateRandomPhrase());
+		});
 		$("#btn_better").click(function(){
 			TweenLite.to(window, 0.8, {scrollTo:{y:"max"}, ease:Power2.easeOut});
 		})
