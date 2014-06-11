@@ -24,7 +24,6 @@ var App = function (options){
 				onComplete:function(){document.location.hash = "contact"}});
 		})
 		window.onhashchange = function(){
-			console.log("onhashchange() "+document.location.hash);
 			var hash = ""+document.location.hash;
 			TweenLite.to(window, 0.8,
 				{scrollTo:{y:$(hash).offset().top},
