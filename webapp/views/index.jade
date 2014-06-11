@@ -7,7 +7,7 @@ html
     meta(name='apple-mobile-web-app-capable', content='yes')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
     link(rel='stylesheet', href='stylesheets/new.css')
-    link(rel='stylesheet', href='stylesheets/fonts.css', type='text/css', charset='utf-8')
+    //link(rel='stylesheet', href='stylesheets/fonts.css', type='text/css', charset='utf-8')
     //
        Social metadata properties
         <meta property="og:title" content="Your idea brought to life - iMinds Media Innovation Center" />
@@ -20,6 +20,11 @@ html
         <meta name="twitter:creator" content="@mixbe">
         <meta name="twitter:image:src" content="http://yourideabroughttolife.be/img/agora.png">
         <meta name="twitter:domain" content="www.yourideabroughttolife.be">
+
+    script.
+        Data = {};
+
+        Data.phrases = !{JSON.stringify(phrases)};
   body
     #generator.section
       .h1Container
@@ -27,9 +32,9 @@ html
         p.subHeader Generate your own media idea!
       #mediaIdea
         p#subject A platform
-        p#that that
+        p#preposition that
         p#action enables loyal tv watchers
-        p#connection to
+        //p#connection to
         p#goal earn money by sharing comments
       #btn_generate.tapButton
         span Generate another MediaIdea
@@ -61,5 +66,5 @@ html
         p.commInfo Steven is uw man!
         br
         br
-    script(src='vendor/jquery-1.10.1.min.js')
-    script(src='js/main.js')
+    script(src='vendor/jquery-1.11.1.min.js')
+    script(src='javascripts/index.js')
