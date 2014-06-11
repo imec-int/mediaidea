@@ -168,7 +168,7 @@ h1{
 }
 
 .tapButton span{
-	opacity: 0;
+	visibility: hidden;
 }
 #btn_generate{
 	background-image: url('../img/btnGenerate_a.png');

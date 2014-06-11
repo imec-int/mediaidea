@@ -12,6 +12,9 @@ var App = function (options){
 	var handlers = function (){
 		$("#btn_generate").click(function(){
 			animateToThisPhrase(generateRandomPhrase());
+		});
+		$("#btn_better").click(function(){
+			TweenLite.to(window, 0.8, {scrollTo:{y:"max"}, ease:Power2.easeOut});
 		})
 	};
 
@@ -42,10 +45,26 @@ var App = function (options){
 
 	/** animates the html to the given Phrase object **/
 	var animateToThisPhrase = function (phraseObj){
-		$("#subject").html(phraseObj.subject.value);
-		$("#preposition").html(phraseObj.subject.preposition);
-		$("#action").html(phraseObj.verb+" "+phraseObj.object);
-		$("#goal").html(phraseObj.extra);
+		// $("#subject").html(phraseObj.subject.value);
+		// $("#preposition").html(phraseObj.subject.preposition);
+		// $("#action").html(phraseObj.verb+" "+phraseObj.object);
+		// $("#goal").html(phraseObj.extra);
+
+		animateLineByIdAndText("#subject",phraseObj.subject.value,Math.random()*0.35+0.075);
+		animateLineByIdAndText("#preposition",phraseObj.subject.preposition,Math.random()*0.35+0.075);
+		animateLineByIdAndText("#action",phraseObj.verb+" "+phraseObj.object,Math.random()*0.35+0.075);
+		animateLineByIdAndText("#goal",phraseObj.extra,Math.random()*0.35+0.075);
+
+	};
+
+	var animateLineByIdAndText = function (lineId,newText,speed){
+		var scrnWidth = $(window).width()+100;
+		TweenLite.to($(lineId),speed,{css:{x:-scrnWidth}, ease:Power2.easeOut,
+			onComplete:function(){
+				TweenLite.to($(lineId),0,{css:{x:scrnWidth}});
+				$(lineId).html(newText);
+				TweenLite.to($(lineId),speed,{css:{x:0}, ease:Power2.easeOut});
+			}});
 	};
 
 	return {
